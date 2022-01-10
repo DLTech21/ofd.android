@@ -8,11 +8,13 @@ android {
 
     defaultConfig {
         applicationId "io.github.dltech21.ofdrw_aar"
-        minSdkVersion 29
+        minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86'
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -22,16 +24,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
-    repositories {
-        flatDir {
-            dirs './libs'
-        }
-    }
+
 }
 
 dependencies {
@@ -49,28 +43,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.yanzhenjie:permission:2.0.0-rc4'
-    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'com.blankj:utilcode:1.30.6'
-    implementation(name: 'ofdrw-release-15', ext: 'aar')
-    implementation 'commons-io:commons-io:2.8'
-    implementation('org.ofdrw:ofdrw-core:1.8.9') {
-        exclude group: 'org.bouncycastle', module: 'bcpkix-jdk15on'
-        exclude group: 'org.bouncycastle', module: 'bcprov-jdk15on'
-    }
-    implementation('org.ofdrw:ofdrw-reader:1.8.9')  {
-        exclude group: 'org.bouncycastle', module: 'bcpkix-jdk15on'
-        exclude group: 'org.bouncycastle', module: 'bcprov-jdk15on'
-    }
-    implementation('com.itextpdf:kernel:7.1.10') {
-        exclude group: 'org.bouncycastle', module: 'bcpkix-jdk15on'
-        exclude group: 'org.bouncycastle', module: 'bcprov-jdk15on'
-    }
-    implementation('com.itextpdf:layout:7.1.10') {
-        exclude group: 'org.bouncycastle', module: 'bcpkix-jdk15on'
-        exclude group: 'org.bouncycastle', module: 'bcprov-jdk15on'
-    }
-    implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.64'
-    implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.64'
-    implementation 'commons-io:commons-io:2.8'
-    implementation 'org.ujmp:ujmp-core:0.3.0'
+
 }

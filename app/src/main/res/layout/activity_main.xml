@@ -23,10 +23,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.7" />
 
-    <com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/pdfView"
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
