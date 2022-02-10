@@ -1,5 +1,6 @@
 package io.github.dltech21.ofdrw_aar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.blankj.utilcode.util.FileIOUtils;
 import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.ResourceUtils;
+import com.leon.lfilepickerlibrary.LFilePicker;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -20,7 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.github.dltech21.OFD_Native;
+import io.github.dltech21.ReaderManager;
+import io.github.dltech21.ofd.FontManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,17 +45,8 @@ public class MainActivity extends AppCompatActivity {
                                 boolean ret = ResourceUtils.copyFileFromAssets("test", dirPath);
                                 Log.e("copy asset", ret + "");
 
-                                String fontPath = PathUtils.getCachePathExternalFirst() + System.getProperty("file.separator") + "fonts";
-                                ResourceUtils.copyFileFromAssets("fonts", fontPath);
-                                Log.e("copy asset", ret + "" + fontPath);
-
-                                file0 = new File(dirPath, "1.ofd");
-                                Log.e("file", file0.exists() + "");
-                                byte[] a = FileIOUtils.readFile2BytesByStream(file0);
-                                ByteBuffer buffer = OFD_Native.newBuffer(a.length);
-                                buffer.order(ByteOrder.nativeOrder());
-                                buffer.limit(buffer.position() + a.length);
-                                OFD_Native.fillBuffer(a, buffer, a.length);
+                                FontManager.getInstance().copyFontFromAssets("fonts");
+                                String fontPath = FontManager.getInstance().getFontDir();
                                 Map<String, String> fontMap = new HashMap<>();
                                 fontMap.put("宋体", fontPath + "/simsun.ttf");
                                 fontMap.put("simsun", fontPath + "/simsun.ttf");
@@ -75,15 +69,37 @@ public class MainActivity extends AppCompatActivity {
                                 fontMap.put("stcaiyun", fontPath + "/STCAIYUN.TTF");
                                 fontMap.put("mongolian baiti", fontPath + "/monbaiti.ttf");
                                 fontMap.put("wingdings", fontPath + "/wingding.ttf");
-                                long ofdPtr = OFD_Native.readOFD(buffer, buffer.remaining());
-                                int pageIndex = 0;
-                                OFD_Native.drawPage(ofdPtr, pageIndex, dirPath, fontMap);
-                                Log.e("file", "ofd index " + pageIndex + " save in " + dirPath);
+                                FontManager.getInstance().setFontMap(fontMap);
+
+//                                file0 = new File(dirPath, "GMT0031-2014.pdf");
+//                                Log.e("file", file0.exists() + "");
+//
+//                                SdkOfdManager.openFile(MainActivity.this, file0.getAbsolutePath());
+
+                                int REQUESTCODE_FROM_ACTIVITY = 1000;
+                                new LFilePicker()
+                                        .withActivity(MainActivity.this)
+                                        .withRequestCode(REQUESTCODE_FROM_ACTIVITY)
+                                        .withMutilyMode(false)
+                                        .withFileFilter(new String[]{".ofd", ".pdf"})
+                                        .withStartPath(dirPath)
+                                        .start();
                             }
                         })
                         .start();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1000) {
+                List<String> list = data.getStringArrayListExtra("paths");
+                ReaderManager.openFile(MainActivity.this, list.get(0));
+            }
+        }
     }
 
 }

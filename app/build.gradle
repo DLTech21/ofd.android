@@ -25,6 +25,11 @@ android {
         }
     }
 
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 
 }
 
@@ -35,7 +40,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    implementation (name:'ofdrw-release-134',ext:'aar')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -44,5 +49,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.yanzhenjie:permission:2.0.0-rc4'
     implementation 'com.blankj:utilcode:1.30.6'
+    implementation "androidx.recyclerview:recyclerview:1.2.0"
+    implementation 'com.github.nostra13:Android-Universal-Image-Loader:f6a9615868482672c3630cb7db6dcf43391e80de'
+    implementation 'com.leon:lfilepickerlibrary:1.8.0'
 
 }
