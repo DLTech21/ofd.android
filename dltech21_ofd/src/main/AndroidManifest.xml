@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.dltech21.ofd">
+
+    <application>
+        <activity
+            android:name="io.github.dltech21.ofd.ui.OfdListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="io.github.dltech21.ofd.ui.OfdActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="io.github.dltech21.pdf.ui.PdfActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="io.github.dltech21.pdf.ui.PdfListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="io.github.dltech21.pdf.ui.ElectronicSignResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="io.github.dltech21.pdf.ui.MyCertDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="io.github.dltech21.pdf.ui.SigntureListActivity"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

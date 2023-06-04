@@ -1,0 +1,32 @@
+<resources>
+    <string name="dialog_title">温馨提示</string>
+    <string name="tip_file_permisson">你需要开读写文件的权限</string>
+    <string name="tip_camera_permisson">你需要打开摄像头的权限</string>
+    <string name="tip_webank_permisson">你需要开读写文件,录音和摄像头等权限</string>
+    <string name="text_sure">确定</string>
+    <string name="text_cancel">取消</string>
+    <string name="button_setting">去设置</string>
+    <string name="text_stauts_checking">验签中</string>
+    <string name="text_stauts_valid">有效</string>
+    <string name="text_stauts_unvalid">无效</string>
+    <string name="text_signer_item">由“%1$s”签名</string>
+    <string name="tip_dialog_loadding">加载中...</string>
+    <string name="title_pdf">签署文档</string>
+    <string name="text_signture_stauts_valid">电子签名有效</string>
+    <string name="text_signture_stauts_unvalid">文档已被篡改</string>
+    <string name="text_signture_unvalid_detail">自应用本签名以来，“文档”被修改。</string>
+    <string name="text_signture_valid_detail_s">“文档”自验证后未被修改。\n\n签名者的身份有效。</string>
+    <string name="text_signture_valid_detail">“文档”自验证后未被修改。\n\n签名者的身份有效。\n\n签名包含嵌入的时间戳。时间戳时间：\n%1$s\n\n签名于以下安全（时间戳）时间已验证：\n%2$s</string>
+    <string name="detail_of_cert">证书详情</string>
+    <string name="digit_cert">数字证书</string>
+    <string name="text_issue">颁发给</string>
+    <string name="text_issuer">颁发者</string>
+    <string name="text_period_of_validity">有效期</string>
+    <string name="text_serial_num">序列号</string>
+    <string name="text_card_num">证件号</string>
+    <string name="text_algorithm">算法</string>
+    <string name="text_data_range">%1$s 至 %2$s</string>
+
+    <string name="cannot_open_buffer">Cannot open buffer</string>
+    <string name="cannot_open_file_Path">Cannot open file: %1$s</string>
+</resources>

@@ -1,0 +1,206 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_base_color"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/toolbar_bar_color">
+
+        <RelativeLayout
+            android:id="@+id/layoutback"
+            android:layout_width="60dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="19dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                 />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/ToolbarTitle"
+            android:layout_centerInParent="true"
+            android:text="@string/detail_of_cert" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/toolbar_bar_divider_color" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="486dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/zhengshu_bg" />
+
+                <ImageView
+                    android:id="@+id/yinzhang_iv"
+                    android:layout_width="92dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="49dp"
+                    android:layout_marginRight="49.5dp"
+                     />
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="57.5dp"
+                    android:text="@string/digit_cert"
+                    android:textColor="#75433a"
+                    android:textSize="35dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Global Digital Cybersecurity Authority"
+                    android:textColor="#75433a"
+                    android:textSize="15dp"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="49.5dp"
+                    android:layout_marginRight="49.5dp"
+                    android:layout_marginTop="131dp"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/rl_device"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/CertText"
+                            android:text="@string/text_issue" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            style="@style/CertTextValue"
+                            android:text="" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rl_authority"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_device"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tip_authority"
+                            style="@style/CertText"
+                            android:text="@string/text_issuer" />
+
+                        <TextView
+                            android:id="@+id/tv_author"
+                            style="@style/CertTextValue"
+                            android:text="" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rl_expire"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_authority"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/CertText"
+                            android:text="@string/text_period_of_validity" />
+
+                        <TextView
+                            android:id="@+id/tv_time"
+                            style="@style/CertTextValue"
+                            android:text="" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rl_serial"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_expire"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            style="@style/CertText"
+                            android:text="@string/text_serial_num" />
+
+                        <TextView
+                            android:id="@+id/tv_serial"
+                            style="@style/CertTextValue"
+                            android:text="" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_signAlgorithm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_serial"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/CertText"
+                            android:text="@string/text_algorithm" />
+
+                        <TextView
+                            android:id="@+id/tv_signAlgorithm"
+                            style="@style/CertTextValue"
+                            android:layout_marginLeft="28dp" />
+
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_base_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/toolbar_bar_color">
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="60dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="19dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/ToolbarTitle"
+            android:layout_centerInParent="true"
+            android:text="电子签名验证" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/background_base_color"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_base_color"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@android:color/white">
+
+                <ImageView
+                    android:id="@+id/iv_file_status"
+                    style="@style/PersonIcon"
+                    android:src="@drawable/youxiao" />
+
+                <TextView
+                    android:id="@+id/tv_file_status"
+                    style="@style/PersonText"
+                    android:text="文档"
+                    android:textSize="13dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/divider_color" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="12.5dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    style="@style/detailTitleText"
+                    android:text="签名者"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_signer"
+                    style="@style/detailValueText"
+                    android:textSize="13dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/divider_color" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    style="@style/detailTitleText"
+                    android:text="签名时间"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_sign_time"
+                    style="@style/detailValueText"
+                    android:textSize="13dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/divider_color" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_from"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@android:color/white"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/detailTitleText"
+                    android:text="信任源获取自"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_sign_from"
+                    style="@style/detailValueText"
+                    android:textSize="13dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/divider_color" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.5dp"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/detailTitleText"
+                    android:layout_marginTop="22dp"
+                    android:text="有效性小结"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_conclusion"
+                    style="@style/detailTitleText"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/text_item_value"
+                    android:textSize="13dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/divider_color" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_check_cert"
+                style="@style/redShadowButton"
+                android:layout_marginBottom="34dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15.5dp"
+                android:text="查看签名者证书" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/toolbar_bar_divider_color" />
+
+</LinearLayout>

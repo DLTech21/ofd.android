@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.library'
+}
+
+def gitVersionCode() {
+    def cmd = 'git rev-list HEAD --count'
+    cmd.execute().text.trim().toInteger()
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode gitVersionCode()
+        versionName "1.0"
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86', 'arm64-v8a'
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    libraryVariants.all { variant ->
+        if (variant.buildType.name == 'release') {
+            variant.assemble.doLast {
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('release.aar')) {
+                        def fileName = "ofdrw-release-${gitVersionCode()}"
+                        def outputPath = "../outputs"
+                        copy {
+                            File temp = new File("../outputs")
+                            temp.deleteDir()
+                            from outputFile
+                            into outputPath
+                            rename { fileName + ".aar" }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+apply plugin: 'com.kezong.fat-aar'
+dependencies {
+    implementation files('libs/itext5-itextpdf-5.5.11.jar')
+//    implementation project(':photoview')
+    embed project(path: ':photoview', configuration: 'default')
+    implementation "androidx.recyclerview:recyclerview:1.2.0"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.blankj:utilcode:1.30.6'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+}
