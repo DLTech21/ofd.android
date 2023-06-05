@@ -50,7 +50,7 @@ dependencies {
     implementation 'com.yanzhenjie:permission:2.0.0-rc4'
     implementation 'com.blankj:utilcode:1.30.6'
     implementation "androidx.recyclerview:recyclerview:1.2.0"
-    implementation 'com.github.nostra13:Android-Universal-Image-Loader:f6a9615868482672c3630cb7db6dcf43391e80de'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     implementation 'com.leon:lfilepickerlibrary:1.8.0'
 
 }
