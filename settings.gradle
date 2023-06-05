@@ -1,2 +1,4 @@
 include ':app'
+include ':dltech21_ofd'
+include ':photoview'
 rootProject.name = "ofdrw-aar"

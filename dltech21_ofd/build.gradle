@@ -51,11 +51,11 @@ android {
         }
     }
 }
-apply plugin: 'com.kezong.fat-aar'
+//apply plugin: 'com.kezong.fat-aar'
 dependencies {
     implementation files('libs/itext5-itextpdf-5.5.11.jar')
-//    implementation project(':photoview')
-    embed project(path: ':photoview', configuration: 'default')
+    implementation project(':photoview')
+//    embed project(path: ':photoview', configuration: 'default')
     implementation "androidx.recyclerview:recyclerview:1.2.0"
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.blankj:utilcode:1.30.6'
