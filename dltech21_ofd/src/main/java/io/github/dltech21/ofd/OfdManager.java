@@ -141,9 +141,9 @@ public class OfdManager {
 
 
     public void putTask(Context context, int pageNum, OnOfdResultListener listener) {
-        boolean exist = FileUtils.isFileExists(cacheDir + "/test" + pageNum + ".png");
+        boolean exist = FileUtils.isFileExists(cacheDir + "/page" + pageNum + ".png");
         if (exist) {
-            listener.onRenderFinish(cacheDir + "/test" + pageNum + ".png");
+            listener.onRenderFinish(cacheDir + "/page" + pageNum + ".png");
             return;
         }
         String key = getKey(fileHash, pageNum);
@@ -214,7 +214,7 @@ public class OfdManager {
                                     continue;
                                 }
                                 OFD_Native.drawPage(ofdPtr, item.getPage(), cacheDir, FontManager.getInstance().getFontMap());
-                                item.setPath(cacheDir + "/test" + item.getPage() + ".png");
+                                item.setPath(cacheDir + "/page" + item.getPage() + ".png");
                                 Message message = Message.obtain();
                                 message.what = 1;
                                 message.obj = item;
