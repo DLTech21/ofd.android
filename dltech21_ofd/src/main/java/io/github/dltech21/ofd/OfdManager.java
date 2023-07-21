@@ -86,12 +86,12 @@ public class OfdManager {
         fileHash = EncryptUtils.encryptMD5File2String(src);
         cacheDir = PathUtils.getCachePathExternalFirst() + System.getProperty("file.separator") + "ofd" + System.getProperty("file.separator") + fileHash;
         FileUtils.createOrExistsDir(cacheDir);
-        byte[] a = FileIOUtils.readFile2BytesByStream(src);
-        ByteBuffer buffer = OFD_Native.newBuffer(a.length);
-        buffer.order(ByteOrder.nativeOrder());
-        buffer.limit(buffer.position() + a.length);
-        OFD_Native.fillBuffer(a, buffer, a.length);
-        ofdPtr = OFD_Native.readOFD(buffer, buffer.remaining());
+//        byte[] a = FileIOUtils.readFile2BytesByStream(src);
+//        ByteBuffer buffer = OFD_Native.newBuffer(a.length);
+//        buffer.order(ByteOrder.nativeOrder());
+//        buffer.limit(buffer.position() + a.length);
+//        OFD_Native.fillBuffer(a, buffer, a.length);
+        ofdPtr = OFD_Native.readOFDByPath(src.getAbsolutePath());
     }
 
     public void close() {
