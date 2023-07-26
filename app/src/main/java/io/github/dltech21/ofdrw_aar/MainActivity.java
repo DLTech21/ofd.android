@@ -6,24 +6,15 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.ResourceUtils;
-import com.blankj.utilcode.util.StringUtils;
 import com.leon.lfilepickerlibrary.LFilePicker;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
-import org.ofdrw.core.attachment.CT_Attachment;
-import org.ofdrw.reader.OFDReader;
-
 import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,29 +95,11 @@ public class MainActivity extends AppCompatActivity {
             if (requestCode == 1000) {
                 List<String> list = data.getStringArrayListExtra("paths");
                 ReaderManager.openFile(MainActivity.this, list.get(0));
-                try {
-                    test( list.get(0));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+
             }
         }
     }
 
-    private void test(String intPath) throws IOException {
-        Path srcP = Paths.get(intPath);
-        OFDReader reader = new OFDReader(srcP);
-        List<CT_Attachment> attachmentList = reader.getAttachmentList();
-        for (CT_Attachment attachment : attachmentList) {
-            Path attFile = reader.getAttachmentFile(attachment);
-            byte[] fileBytes = Files.readAllBytes(attFile);
-            String fileName = attFile.getFileName().toString();
-            final String attachmentName = attachment.getAttachmentName();
-            String displayFileName = StringUtils.isEmpty(attachmentName) ? fileName :
-                    attachmentName.concat(fileName.contains(".") ?
-                            fileName.substring(fileName.lastIndexOf(".")) : "");
-            Log.e("CT_Attachment", displayFileName);
-        }
-    }
+
 
 }
