@@ -12,7 +12,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode gitVersionCode()
         versionName "1.0"
@@ -59,5 +59,16 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.0"
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.blankj:utilcode:1.30.6'
+    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.20'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    api('org.ofdrw:ofdrw-core:2.0.6') {
+        exclude group: 'org.bouncycastle', module: 'bcpkix-jdk15on'
+        exclude group: 'org.bouncycastle', module: 'bcprov-jdk15on'
+    }
+    api('org.ofdrw:ofdrw-reader:2.0.6') {
+        exclude group: 'org.bouncycastle', module: 'bcpkix-jdk15on'
+        exclude group: 'org.bouncycastle', module: 'bcprov-jdk15on'
+    }
+    compileOnly group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.64'
+    compileOnly group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.64'
 }
