@@ -140,8 +140,13 @@ public class OfdActivity extends AppCompatActivity implements ActivityCompat.OnR
 
         try {
             ofdManager.init(OfdActivity.this, new File(filePath));
-            isOpenPdf = true;
-            initPdfData();
+            if(ofdManager.getOfdPtr() != -1) {
+                isOpenPdf = true;
+                initPdfData();
+            } else {
+                //报错
+                
+            }
         } catch (Exception e) {
             e.printStackTrace();
 //            if (pdfManager.isNeedPassword() && (password == null || !pdfManager.isCorrectPassowrd())) {
