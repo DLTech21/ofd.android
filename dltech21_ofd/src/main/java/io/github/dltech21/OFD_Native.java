@@ -33,8 +33,8 @@ public class OFD_Native {
 
 	public static native void deleteBuffer(ByteBuffer buffer);
 
-	public static native long readOFDByPath(String path);
-    public static native long readOFD(ByteBuffer data, int length);
+	public static native long readOFDByPath(String path, long[] ptr);
+    public static native long readOFD(ByteBuffer data, int length, long[] ptr);
 
     public static native void drawPage(long ofd, int pageIndex, String dir, Map<String, String> fontMap);
 

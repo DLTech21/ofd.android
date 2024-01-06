@@ -139,8 +139,8 @@ public class OfdActivity extends AppCompatActivity implements ActivityCompat.OnR
         findViewById(R.id.rl_fenye).setVisibility(View.VISIBLE);
 
         try {
-            ofdManager.init(OfdActivity.this, new File(filePath));
-            if(ofdManager.getOfdPtr() != -1) {
+            long ret = ofdManager.init(OfdActivity.this, new File(filePath));
+            if(ret == 0) {
                 isOpenPdf = true;
                 initPdfData();
             } else {

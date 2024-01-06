@@ -80,7 +80,7 @@ public class OfdManager {
         }
     };
 
-    public void init(Context context, File src) {
+    public long init(Context context, File src) {
         this.mContext = context;
         this.src = src;
         fileHash = EncryptUtils.encryptMD5File2String(src);
@@ -91,7 +91,12 @@ public class OfdManager {
         buffer.order(ByteOrder.nativeOrder());
         buffer.limit(buffer.position() + a.length);
         OFD_Native.fillBuffer(a, buffer, a.length);
-        ofdPtr = OFD_Native.readOFD(buffer, buffer.remaining());
+        long[] ptr = new long[1];
+        long ret = OFD_Native.readOFD(buffer, buffer.remaining(), ptr);
+        if (ret == 0) {
+            ofdPtr = ptr[0];
+        }
+        return ret;
     }
 
     public void close() {
