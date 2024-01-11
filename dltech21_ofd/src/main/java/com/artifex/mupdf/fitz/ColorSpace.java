@@ -1,4 +1,4 @@
-// Copyright (C) 2004-2021 Artifex Software, Inc.
+// Copyright (C) 2004-2023 Artifex Software, Inc.
 //
 // This file is part of MuPDF.
 //
@@ -17,8 +17,8 @@
 //
 // Alternative licensing terms are available from the licensor.
 // For commercial licensing, see <https://www.artifex.com/> or contact
-// Artifex Software, Inc., 1305 Grant Avenue - Suite 200, Novato,
-// CA 94945, U.S.A., +1(415)492-9861, for further information.
+// Artifex Software, Inc., 39 Mesa Street, Suite 108A, San Francisco,
+// CA 94129, USA, for further information.
 
 package com.artifex.mupdf.fitz;
 
@@ -67,4 +67,12 @@ public class ColorSpace
 		if (this == DeviceCMYK) return "DeviceCMYK";
 		return "ColorSpace(" + getNumberOfComponents() + ")";
 	}
+
+	public native boolean isGray();
+	public native boolean isRGB();
+	public native boolean isCMYK();
+	public native boolean isIndexed();
+	public native boolean isLab();
+	public native boolean isDeviceN();
+	public native boolean isSubtractive();
 }

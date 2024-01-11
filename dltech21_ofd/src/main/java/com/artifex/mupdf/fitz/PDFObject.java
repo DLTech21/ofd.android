@@ -1,4 +1,4 @@
-// Copyright (C) 2004-2021 Artifex Software, Inc.
+// Copyright (C) 2004-2023 Artifex Software, Inc.
 //
 // This file is part of MuPDF.
 //
@@ -17,8 +17,8 @@
 //
 // Alternative licensing terms are available from the licensor.
 // For commercial licensing, see <https://www.artifex.com/> or contact
-// Artifex Software, Inc., 1305 Grant Avenue - Suite 200, Novato,
-// CA 94945, U.S.A., +1(415)492-9861, for further information.
+// Artifex Software, Inc., 39 Mesa Street, Suite 108A, San Francisco,
+// CA 94129, USA, for further information.
 
 package com.artifex.mupdf.fitz;
 
@@ -45,7 +45,9 @@ public class PDFObject implements Iterable<PDFObject>
 	}
 
 	public native boolean isIndirect();
-	public native boolean isNull();
+	public boolean isNull() {
+		return this == PDFObject.Null;
+	}
 	public native boolean isBoolean();
 	public native boolean isInteger();
 	public native boolean isReal();
@@ -75,6 +77,7 @@ public class PDFObject implements Iterable<PDFObject>
 	}
 
 	public native PDFObject resolve();
+	public native boolean equals(PDFObject other);
 
 	public native byte[] readStream();
 	public native byte[] readRawStream();
@@ -102,7 +105,7 @@ public class PDFObject implements Iterable<PDFObject>
 	}
 
 	private native PDFObject getArray(int index);
-	private native PDFObject getDictionary(String name);
+	private native PDFObject getDictionary(String name, boolean inheritable);
 	private native PDFObject getDictionaryKey(int index);
 
 	public PDFObject get(int index) {
@@ -110,11 +113,19 @@ public class PDFObject implements Iterable<PDFObject>
 	}
 
 	public PDFObject get(String name) {
-		return getDictionary(name);
+		return getDictionary(name, false);
 	}
 
 	public PDFObject get(PDFObject name) {
-		return getDictionary(name != null ? name.asName() : null);
+		return getDictionary(name != null ? name.asName() : null, false);
+	}
+
+	public PDFObject getInheritable(String name) {
+		return getDictionary(name, true);
+	}
+
+	public PDFObject getInheritable(PDFObject name) {
+		return getDictionary(name != null ? name.asName() : null, true);
 	}
 
 	private native void putArrayBoolean(int index, boolean b);

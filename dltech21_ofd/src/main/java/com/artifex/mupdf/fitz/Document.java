@@ -1,4 +1,4 @@
-// Copyright (C) 2004-2021 Artifex Software, Inc.
+// Copyright (C) 2004-2022 Artifex Software, Inc.
 //
 // This file is part of MuPDF.
 //
@@ -17,8 +17,8 @@
 //
 // Alternative licensing terms are available from the licensor.
 // For commercial licensing, see <https://www.artifex.com/> or contact
-// Artifex Software, Inc., 1305 Grant Avenue - Suite 200, Novato,
-// CA 94945, U.S.A., +1(415)492-9861, for further information.
+// Artifex Software, Inc., 39 Mesa Street, Suite 108A, San Francisco,
+// CA 94129, USA, for further information.
 
 package com.artifex.mupdf.fitz;
 
@@ -88,6 +88,7 @@ public class Document
 
 	public static native boolean recognize(String magic);
 
+	public native boolean supportsAccelerator();
 	public native void saveAccelerator(String filename);
 	public native void outputAccelerator(SeekableOutputStream stream);
 
@@ -200,7 +201,7 @@ public class Document
 		return resolveLink(link.uri);
 	}
 	public Location resolveLink(Link link) {
-		return resolveLink(link.uri);
+		return resolveLink(link.getURI());
 	}
 
 	public native LinkDestination resolveLinkDestination(String uri);
@@ -211,7 +212,7 @@ public class Document
 		return resolveLinkDestination(link.uri);
 	}
 	public LinkDestination resolveLinkDestination(Link link) {
-		return resolveLinkDestination(link.uri);
+		return resolveLinkDestination(link.getURI());
 	}
 
 	public native Outline[] loadOutline();
@@ -231,6 +232,10 @@ public class Document
 	public static final int PERMISSION_COPY = (int) 'c';
 	public static final int PERMISSION_EDIT = (int) 'e';
 	public static final int PERMISSION_ANNOTATE = (int) 'n';
+	public static final int PERMISSION_FORM = (int) 'f';
+	public static final int PERMISSION_ACCESSBILITY = (int) 'y';
+	public static final int PERMISSION_ASSEMBLE = (int) 'a';
+	public static final int PERMISSION_PRINT_HQ = (int) 'h';
 
 	public native boolean hasPermission(int permission);
 
