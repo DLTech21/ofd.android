@@ -220,6 +220,7 @@ public class PdfManager {
         isClose = true;
         list.clear();
         array.clear();
+        core.onDestroy();
     }
 
     public String getFileHash() {
