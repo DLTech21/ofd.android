@@ -1,7 +1,10 @@
 package io.github.dltech21;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
+import com.artifex.mupdf.viewer.DocumentActivity;
 import com.blankj.utilcode.util.FileUtils;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -60,7 +63,14 @@ public class ReaderManager {
         if (file.exists()) {
             String ext = FileUtils.getFileExtension(file).toLowerCase();
             if ("pdf".equals(ext)) {
-                PdfActivity.open(mContext, path, "");
+//                PdfActivity.open(mContext, path, "");
+                Intent intent = new Intent(mContext, DocumentActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+                intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.parse(path), "application/pdf");
+                mContext.startActivity(intent);
+
             } else if ("ofd".equals(ext)) {
                 OfdActivity.open(mContext, path, "");
             }

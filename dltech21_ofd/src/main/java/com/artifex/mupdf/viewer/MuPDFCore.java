@@ -15,6 +15,7 @@ import com.artifex.mupdf.fitz.Page;
 import com.artifex.mupdf.fitz.Quad;
 import com.artifex.mupdf.fitz.Rect;
 import com.artifex.mupdf.fitz.RectI;
+import com.artifex.mupdf.fitz.SeekableInputStream;
 import com.artifex.mupdf.fitz.android.AndroidDrawDevice;
 
 import java.util.ArrayList;
@@ -49,6 +50,14 @@ public class MuPDFCore
 
 	public MuPDFCore(byte buffer[], String magic) {
 		doc = Document.openDocument(buffer, magic);
+		doc.layout(layoutW, layoutH, layoutEM);
+		pageCount = doc.countPages();
+		resolution = 160;
+		currentPage = -1;
+	}
+
+	public MuPDFCore(SeekableInputStream stm, String magic) {
+		doc = Document.openDocument(stm, magic);
 		doc.layout(layoutW, layoutH, layoutEM);
 		pageCount = doc.countPages();
 		resolution = 160;
@@ -105,8 +114,6 @@ public class MuPDFCore
 				displayList.destroy();
 			displayList = null;
 			page = doc.loadPage(pageNum);
-			if (page == null)
-				return;
 			Rect b = page.getBounds();
 			pageWidth = b.x1 - b.x0;
 			pageHeight = b.y1 - b.y0;

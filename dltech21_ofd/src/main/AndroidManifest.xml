@@ -27,5 +27,33 @@
         <activity
             android:name="io.github.dltech21.pdf.ui.SigntureListActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.artifex.mupdf.viewer.DocumentActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true"
+            >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                &lt;!&ndash; list the mime-types we know about &ndash;&gt;-->
+<!--                <data android:mimeType="application/pdf" />-->
+<!--                <data android:mimeType="application/vnd.ms-xpsdocument" />-->
+<!--                <data android:mimeType="application/oxps" />-->
+<!--                <data android:mimeType="application/vnd.comicbook+zip" />-->
+<!--                <data android:mimeType="application/x-cbz" />-->
+<!--                <data android:mimeType="application/epub+zip" />-->
+<!--                <data android:mimeType="application/x-fictionbook" />-->
+<!--                <data android:mimeType="application/x-mobipocket-ebook" />-->
+<!--                &lt;!&ndash; list application/octet-stream to catch the ones android doesn't recognize &ndash;&gt;-->
+<!--                <data android:mimeType="application/octet-stream" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name="com.artifex.mupdf.viewer.OutlineActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            >
+        </activity>
     </application>
 </manifest>

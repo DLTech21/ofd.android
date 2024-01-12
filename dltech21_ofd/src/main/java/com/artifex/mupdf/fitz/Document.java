@@ -119,13 +119,12 @@ public class Document
 		for (int i = 0; i < nc; ++i) {
 			int np = countPages(i);
 			if (number < start + np) {
-				Log.e("eeee", "c:"+i+"ddd:"+(number - start));
 				return loadPage(i, number - start);
 			}
 			start += np;
 		}
-		return null;
-//		throw new IllegalArgumentException("page number out of range:" + number);
+//		return null;
+		throw new IllegalArgumentException("page number out of range:" + number +"page: "+this);
 	}
 
 	public Location lastPage() {

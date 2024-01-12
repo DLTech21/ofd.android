@@ -122,34 +122,34 @@ public class PdfManager {
         } else {
             list.addFirst(new PdfItem(pageNum, fileHash, listener));
         }
-        if (timer == null) {
+//        if (timer == null) {
             startRender();
-        }
+//        }
     }
 
     private void startRender() {
         synchronized (progressTimerSync) {
-            if (timer == null) {
-                timer = new Timer();
-                timer.schedule(new TimerTask() {
-
-                    @Override
-                    public void run() {
-                        if (array.size() == 0) {
-                            if (isClose) {
-                                try {
-                                    if (core != null) {
-                                        core.onDestroy();
-                                        core = null;
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                stop();
-                            }
-                        } else {
-                            while (list.size() > 0) {
-                                if (isStop) {
+//            if (timer == null) {
+//                timer = new Timer();
+//                timer.schedule(new TimerTask() {
+//
+//                    @Override
+//                    public void run() {
+//                        if (array.size() == 0) {
+//                            if (isClose) {
+//                                try {
+//                                    if (core != null) {
+//                                        core.onDestroy();
+//                                        core = null;
+//                                    }
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                }
+//                                stop();
+//                            }
+//                        } else {
+//                            while (list.size() > 0) {
+                                if (isStop || core == null) {
                                     return;
                                 }
                                 PdfItem item = null;
@@ -158,13 +158,11 @@ public class PdfManager {
                                 }
                                 array.remove(item.getFileHash() + item.getPage());
                                 if (item.getFileHash() != fileHash) {
-                                    continue;
+//                                    continue;
+                                    return;
                                 }
 
                                 PointF pageSize = core.getPageSize(item.getPage());
-                                if (!(pageSize.x> 0 && pageSize.y > 0)) {
-                                    continue;
-                                }
                                 Log.e("pageSize", pageSize.x + ",,,,,," + pageSize.y);
                                 Point request = null;
                                 double mSourceScale = Math.min(screenSize.x * 1.0 / pageSize.x, screenSize.y * 1.0 / pageSize.y);
@@ -182,12 +180,12 @@ public class PdfManager {
                                 message.what = 1;
                                 message.obj = item;
                                 handler.sendMessage(message);
-                            }
-                        }
-                    }
-                }, 0, 400);
+//                            }
+//                        }
+//                    }
+//                }, 0, 400);
             }
-        }
+//        }
     }
 
     public void stop() {
@@ -224,6 +222,7 @@ public class PdfManager {
         list.clear();
         array.clear();
         core.onDestroy();
+        stop();
     }
 
     public String getFileHash() {

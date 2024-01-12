@@ -114,7 +114,10 @@ public class PdfPagerAdapter extends PagerAdapter {
             AsyncTask<Void, Void, PointF> sizingTask = new AsyncTask<Void, Void, PointF>() {
                 @Override
                 protected PointF doInBackground(Void... arg0) {
-                    return mCore.getPageSize(position);
+                    if (mCore != null) {
+                        mCore.getPageSize(position);
+                    }
+                    return  new PointF(0, 0);
                 }
 
                 @Override
