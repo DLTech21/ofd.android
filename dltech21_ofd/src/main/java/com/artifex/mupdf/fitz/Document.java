@@ -112,6 +112,7 @@ public class Document
 	}
 
 	public Page loadPage(int number) {
+
 		int start = 0;
 		int nc = countChapters();
 		for (int i = 0; i < nc; ++i) {
@@ -120,7 +121,7 @@ public class Document
 				return loadPage(i, number - start);
 			start += np;
 		}
-		throw new IllegalArgumentException("page number out of range");
+		throw new IllegalArgumentException("page number out of range:" + number);
 	}
 
 	public Location lastPage() {
