@@ -90,6 +90,8 @@ public class MuPDFCore
 
 	private synchronized void gotoPage(int pageNum) {
 		/* TODO: page cache */
+		if (doc == null)
+			return;
 		if (pageNum > pageCount-1)
 			pageNum = pageCount-1;
 		else if (pageNum < 0)
