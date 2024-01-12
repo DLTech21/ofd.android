@@ -162,6 +162,9 @@ public class PdfManager {
                                 }
 
                                 PointF pageSize = core.getPageSize(item.getPage());
+                                if (!(pageSize.x> 0 && pageSize.y > 0)) {
+                                    continue;
+                                }
                                 Log.e("pageSize", pageSize.x + ",,,,,," + pageSize.y);
                                 Point request = null;
                                 double mSourceScale = Math.min(screenSize.x * 1.0 / pageSize.x, screenSize.y * 1.0 / pageSize.y);
@@ -297,7 +300,8 @@ public class PdfManager {
 
     public boolean checkCacheBitmap(String fileHash, int pageNum) {
         if (new File(cacheDir, fileHash + "_" + pageNum + ".png").exists()) {
-            return true;
+            new File(cacheDir, fileHash + "_" + pageNum + ".png").deleteOnExit();
+//            return true;
         }
         return false;
     }

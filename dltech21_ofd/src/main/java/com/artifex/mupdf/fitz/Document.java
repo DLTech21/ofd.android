@@ -23,6 +23,7 @@
 package com.artifex.mupdf.fitz;
 
 import android.graphics.RectF;
+import android.util.Log;
 
 public class Document
 {
@@ -117,11 +118,14 @@ public class Document
 		int nc = countChapters();
 		for (int i = 0; i < nc; ++i) {
 			int np = countPages(i);
-			if (number < start + np)
+			if (number < start + np) {
+				Log.e("eeee", "c:"+i+"ddd:"+(number - start));
 				return loadPage(i, number - start);
+			}
 			start += np;
 		}
-		throw new IllegalArgumentException("page number out of range:" + number);
+		return null;
+//		throw new IllegalArgumentException("page number out of range:" + number);
 	}
 
 	public Location lastPage() {

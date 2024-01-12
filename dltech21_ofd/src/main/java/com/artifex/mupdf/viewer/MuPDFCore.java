@@ -105,6 +105,8 @@ public class MuPDFCore
 				displayList.destroy();
 			displayList = null;
 			page = doc.loadPage(pageNum);
+			if (page == null)
+				return;
 			Rect b = page.getBounds();
 			pageWidth = b.x1 - b.x0;
 			pageHeight = b.y1 - b.y0;
@@ -134,7 +136,8 @@ public class MuPDFCore
                                       int patchW, int patchH,
                                       Cookie cookie) {
 		gotoPage(pageNum);
-
+		if (page== null)
+			return;
 		if (displayList == null)
 			displayList = page.toDisplayList();
 
