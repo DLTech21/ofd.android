@@ -93,7 +93,7 @@ public class OfdActivity extends AppCompatActivity implements ActivityCompat.OnR
             @Override
             public void onClick(View view) {
                 if (filePath != null) {
-                    OfdListActivity.open(OfdActivity.this, currentPosition, filePath, ofdManager.getPageCount(), password);
+//                    OfdListActivity.open(OfdActivity.this, currentPosition, filePath, ofdManager.getPageCount(), password);
                 }
             }
         });
