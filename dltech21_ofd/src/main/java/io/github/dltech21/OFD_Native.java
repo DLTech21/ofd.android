@@ -17,7 +17,7 @@ public class OFD_Native {
 	static {
 		try {
 			System.loadLibrary("mupdf_java");
-			System.loadLibrary("ofdParser");
+			System.loadLibrary("OfdDraw");
 			Log.e("OFD_Native", "load ofdParser library success");
 		} catch (Exception e) {
 			Log.e("OFD_Native", "load ofdParser library failed:"+ e.getMessage());
