@@ -55,19 +55,19 @@ public class OfdPagerAdapter extends PagerAdapter {
 //                    return;
 //                }
 //                d.offset(-drawSize.left, -drawSize.top);
-                ofdManager.startOfdDecode(pdfView.getPageNum(), new OfdTaskListener() {
-                    @Override
-                    public void onBefor() {
-
-                    }
-
-                    @Override
-                    public void onComplete(String path) {
-//                        if (tag == pdfView.getQualityTag()) {
-//                            pdfView.setQualityBitmap(bitmap, Math.max(drawSize.left, 0), Math.max(drawSize.top, 0));
-//                        }
-                    }
-                });
+//                ofdManager.startOfdDecode(pdfView.getPageNum(), new OfdTaskListener() {
+//                    @Override
+//                    public void onBefor() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onComplete(String path) {
+////                        if (tag == pdfView.getQualityTag()) {
+////                            pdfView.setQualityBitmap(bitmap, Math.max(drawSize.left, 0), Math.max(drawSize.top, 0));
+////                        }
+//                    }
+//                });
             }
         });
         container.addView(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);

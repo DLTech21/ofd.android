@@ -13,6 +13,7 @@ import androidx.collection.ArrayMap;
 import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.FileIOUtils;
 import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PathUtils;
 
 import java.io.File;
@@ -152,6 +153,7 @@ public class OfdManager {
             return;
         }
         String key = getKey(fileHash, pageNum);
+        LogUtils.i(key);
         Point point = array.get(key);
         if (point != null) {
             synchronized (list) {
@@ -198,11 +200,11 @@ public class OfdManager {
                     public void run() {
                         if (array.size() == 0) {
                             if (isClose) {
-                                try {
-                                    OFD_Native.closeOFD(ofdPtr);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+//                                try {
+//                                    OFD_Native.closeOFD(ofdPtr);
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                }
                                 stop();
                             }
                         } else {
@@ -218,7 +220,11 @@ public class OfdManager {
                                 if (item.getFileHash() != fileHash) {
                                     continue;
                                 }
-                                OFD_Native.drawPage(ofdPtr, item.getPage(), cacheDir, FontManager.getInstance().getFontMap());
+                                try {
+                                    OFD_Native.drawPage(ofdPtr, item.getPage(), cacheDir, FontManager.getInstance().getFontMap());
+                                } catch (Exception e) {
+
+                                }
                                 item.setPath(cacheDir + "/page" + item.getPage() + ".png");
                                 Message message = Message.obtain();
                                 message.what = 1;
