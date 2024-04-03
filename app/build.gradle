@@ -3,13 +3,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    compileSdk 29
 
     defaultConfig {
         applicationId "io.github.dltech21.ofdrw_aar"
-        minSdkVersion 26
-        targetSdkVersion 30
+        minSdkVersion 16
         versionCode 1
         versionName "1.0"
         ndk {
@@ -30,6 +28,7 @@ android {
             dirs 'libs'
         }
     }
+    buildToolsVersion '30.0.3'
 
 }
 
