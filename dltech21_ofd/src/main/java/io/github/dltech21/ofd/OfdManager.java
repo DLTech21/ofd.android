@@ -200,11 +200,11 @@ public class OfdManager {
                     public void run() {
                         if (array.size() == 0) {
                             if (isClose) {
-//                                try {
-//                                    OFD_Native.closeOFD(ofdPtr);
-//                                } catch (Exception e) {
-//                                    e.printStackTrace();
-//                                }
+                                try {
+                                    OFD_Native.closeOFD(ofdPtr);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                                 stop();
                             }
                         } else {
